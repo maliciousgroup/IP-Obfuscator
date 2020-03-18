@@ -4,15 +4,33 @@ import random
 from colorama import Style, Fore
 
 red = Fore.RED
+cyan = Fore.CYAN
+yellow = Fore.YELLOW
+
 bold = Style.BRIGHT
 reset = Style.RESET_ALL
-yellow = Fore.YELLOW
 
 
 class Obfuscation:
 
     def __init__(self, ip: ipaddress.IPv4Address):
         self.ip = ip
+        self.intro()
+
+    @staticmethod
+    def intro():
+        _credits = f'''
+
+██╗██████╗      ██████╗ ██████╗ ███████╗██╗   ██╗███████╗ ██████╗ █████╗ ████████╗ ██████╗ ██████╗ 
+██║██╔══██╗    ██╔═══██╗██╔══██╗██╔════╝██║   ██║██╔════╝██╔════╝██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗
+██║██████╔╝    ██║   ██║██████╔╝█████╗  ██║   ██║███████╗██║     ███████║   ██║   ██║   ██║██████╔╝
+██║██╔═══╝     ██║   ██║██╔══██╗██╔══╝  ██║   ██║╚════██║██║     ██╔══██║   ██║   ██║   ██║██╔══██╗
+██║██║         ╚██████╔╝██████╔╝██║     ╚██████╔╝███████║╚██████╗██║  ██║   ██║   ╚██████╔╝██║  ██║
+╚═╝╚═╝          ╚═════╝ ╚═════╝ ╚═╝      ╚═════╝ ╚══════╝ ╚═════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝
+                                                                                                   
+{bold}{cyan}[*] Author: d3d (@MaliciousGroup){reset}
+        '''
+        print(_credits)
 
     def obfuscate(self):
         octets = self.ip.__str__().split('.')
@@ -29,10 +47,10 @@ class Obfuscation:
             oct_parts.append(oct(int(octet)).replace('o', '0'))
         print(f"\n{bold}{yellow}[+] Obfuscation Layer 2) Hexadecimal and Octal with Random Padding{reset}")
         for i in hex_parts:
-            hex_rand += i.replace('0x', '0x' + '0' * random.randint(1, 20)) + '.'
+            hex_rand += i.replace('0x', '0x' + '0' * random.randint(1, 30)) + '.'
         print(f"{'Random Hex Padding:':<30}{hex_rand}".rstrip('.'))
         for i in oct_parts:
-            oct_rand += '0' * random.randint(1, 20) + i + '.'
+            oct_rand += '0' * random.randint(1, 30) + i + '.'
         print(f"{'Random Oct Padding:':<30}{oct_rand}".rstrip('.'))
         count = 0
         print(f"\n{bold}{yellow}[+] Obfuscation Layer 3) Random Radix with Random Padding{reset}")
