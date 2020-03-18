@@ -29,7 +29,7 @@ class Obfuscation:
             oct_parts.append(oct(int(octet)).replace('o', '0'))
         print(f"\n{bold}{yellow}[+] Obfuscation Layer 2) Hexadecimal and Octal with Random Padding{reset}")
         for i in hex_parts:
-            hex_rand += i.replace('0x', '0x' + '0' * random.randint(1, 10)) + '.'
+            hex_rand += i.replace('0x', '0x' + '0' * random.randint(1, 20)) + '.'
         print(f"{'Random Hex Padding:':<30}{hex_rand}".rstrip('.'))
         for i in oct_parts:
             oct_rand += '0' * random.randint(1, 20) + i + '.'
